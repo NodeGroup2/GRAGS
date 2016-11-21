@@ -1,6 +1,6 @@
 # Status
 
-![[Build Status]https://travis-ci.org/NodeGroup2/GRAGS.svg?branch=master]
+![[Build Status]https://travis-ci.org/NodeGroup2/GRAGS.svg?branch=master](https://travis-ci.org/NodeGroup2/GRAGS.svg?branch=master)
 
 # GRAGS
 
