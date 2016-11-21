@@ -1,3 +1,5 @@
+https://travis-ci.org/NodeGroup2/GRAGS.svg?branch=master
+
 # GRAGS
 
 A Hapi app for searching recipes and requesting Tesco shopping lists. Available online at []().
