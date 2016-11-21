@@ -19,8 +19,8 @@ A Hapi app for searching recipes and requesting Tesco shopping lists. Available 
 
 ## Specific objectives
 
-- Implement a recipe search API
-- Implement the Tesco grocery search API
+- Implement a recipe search API ([Recipe puppy](http://www.recipepuppy.com/))
+- Implement a grocery search API ([Tesco](https://devportal.tescolabs.com/))
 - Provide ingredients checklist
 - Provide total cost calculation for selected ingredients
 
