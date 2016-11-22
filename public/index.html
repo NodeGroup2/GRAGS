@@ -14,7 +14,15 @@
       <p class="input_description">What are you hungry for?</p>
       <div><input class="input_field" type="text" name="lname"></div>
       <button class="search_btn" type="button">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
+      <script id="entry-template" type="text/x-handlebars-template">
+        <ul>
+          {{#each recipes}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      </script>
     </section>
     <script src="https://use.fontawesome.com/dab6567ebf.js"></script>
+    <script type="text/javascript" src='./index.js'> </script>
   </body>
 </html>

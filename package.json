@@ -4,7 +4,7 @@
   "description": "An app for searching recipes and requesting Tesco shopping lists",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "./node_modules/.bin/tape ./tests/tape-tests.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/NodeGroup2/GRAGS/issues"
   },
-  "homepage": "https://github.com/NodeGroup2/GRAGS#readme"
+  "homepage": "https://github.com/NodeGroup2/GRAGS#readme",
+  "dependencies": {
+    "handlebars": "^4.0.6",
+    "tape": "^4.6.3"
+  }
 }
