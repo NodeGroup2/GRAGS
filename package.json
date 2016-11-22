@@ -4,7 +4,9 @@
   "description": "An app for searching recipes and requesting Tesco shopping lists",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "watch": "nodemon -q -x 'npm test'",
+    "test": "node ./tests/tape-tests.js | tap-spec"
   },
   "repository": {
     "type": "git",
