@@ -1,10 +1,10 @@
 const Hapi = require('hapi');
 const vision = require('vision');
 const inert = require('inert');
-// const routes = require('./router.js');
 const server = new Hapi.Server();
 const Request = require('request');
 const RecipesList = [];
+const env = require('env2')('./.env');
 
 server.connection({
   host: 'localhost',
