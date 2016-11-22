@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
     <link rel="stylesheet" href="normalize.css" media="screen">
     <link rel='stylesheet' href='styles.css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis">
@@ -10,11 +10,20 @@
   </head>
   <body>
     <header class="header">GRGs</header>
-    <section class="content">
+    <section class="first_page">
       <p class="input_description">What are you hungry for?</p>
       <div><input class="input_field" type="text" name="lname"></div>
       <button class="search_btn" type="button">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
+        <ul class="recipe_suggestions">
+          {{#each RecipesList}}
+            <li class="recipes">{{this.title}}</li>
+          {{/each}}
+        </ul>
+    </section>
+    <section class="second_page">
+      <p class="input_description">What are you hungry for?</p>
     </section>
     <script src="https://use.fontawesome.com/dab6567ebf.js"></script>
+    <script type="text/javascript" src='./index.js'> </script>
   </body>
 </html>

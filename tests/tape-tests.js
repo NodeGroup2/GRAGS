@@ -1,7 +1,7 @@
 const server = require('../src/server.js');
-const tape = require('tape');
 const fs = require('fs');
 const path = require('path');
+const handlebars = require("../public/index.js")
 
 tape('check if server is running', function(t) {
   server.start(err => {
