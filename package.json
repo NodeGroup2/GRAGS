@@ -4,7 +4,7 @@
   "description": "An app for searching recipes and requesting Tesco shopping lists",
   "main": "index.js",
   "scripts": {
-    "start": "node src/server-start.js",
+    "start": "nodemon src/server-start.js",
     "watch": "nodemon -q -x 'npm test'",
     "test": "node ./tests/tape-tests.js | tap-spec"
   },
@@ -30,5 +30,8 @@
     "tape": "^4.6.3",
     "vision": "^4.1.0",
     "wreck": "^10.0.0"
+  },
+  "dependencies": {
+    "request": "^2.79.0"
   }
 }

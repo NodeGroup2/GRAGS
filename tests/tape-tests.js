@@ -38,3 +38,16 @@ tape('check successful route & handling to styles.css', function(t) {
     t.end();
   });
 });
+
+tape('check successful route & handling to /recipes/?q=omelet', function(t) {
+  var options = {
+    method: 'GET',
+    url: '/recipes/?q=omelet'
+  };
+  server.inject(options, (res) => {
+    t.equal(res.statusCode, 200, 'status code is 200');
+    var firstRecipeTitle = JSON.parse(res.result).results[0].title.toString();
+    t.equal(firstRecipeTitle, "Baked Omelet With Broccoli &amp; Tomato", 'first recipe title as expected');
+    t.end();
+  });
+});

@@ -1,5 +1,6 @@
 const Hapi = require('hapi');
 const server = new Hapi.Server();
+const Request = require('request');
 
 server.connection({
   host: 'localhost',
@@ -18,6 +19,19 @@ server.register(require('inert'), (err) => {
       }
     }
   });
+});
+
+server.route({
+  method: 'GET',
+  path: '/recipes/',
+  handler: function(request,reply) {
+    let url = 'http://www.recipepuppy.com/api/'
+    let searchRecipe = request.query.q
+    Request(`${url}?q=${searchRecipe}`, function(err, res, body) {
+      console.log(body);
+      reply(body);
+    })
+  }
 });
 
 module.exports = server;
