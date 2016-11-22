@@ -19,8 +19,10 @@
         <ul class="recipe_suggestions">
           {{#each recipes}}
             <li class="recipes">{{this.title}}</li>
+            {{#if this.ingredients}}
             <a class="links" href={{this.link}} target="_blank">Show recipe</a>
             <a class="links_shopping" target="_blank">Get shopping list</a>
+            {{/if}}
           {{/each}}
         </ul>
     </section>
