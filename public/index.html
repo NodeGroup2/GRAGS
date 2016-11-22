@@ -15,8 +15,9 @@
       <div><input class="input_field" type="text" name="lname"></div>
       <button class="search_btn" type="button">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
         <ul class="recipe_suggestions">
-          {{#each RecipesList}}
+          {{#each recipes}}
             <li class="recipes">{{this.title}}</li>
+            <a href={{this.link}}>Link to recipe</a>
           {{/each}}
         </ul>
     </section>
