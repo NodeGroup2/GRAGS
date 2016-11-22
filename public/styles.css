@@ -15,8 +15,16 @@ html, body {
   font-size: 2rem;
 }
 
-.content {
+.first_page {
+  visibility: visible;
   margin-top: 5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.second_page {
+  visibility: hidden;
+  margin-top: -300px;
   text-align: center;
   width: 100%;
 }
@@ -51,4 +59,9 @@ html, body {
   font-family: 'Dosis', sans-serif;
   vertical-align: middle;
   border-radius: 25px;
+}
+
+.recipe_suggestions {
+  text-align: left;
+  margin-top: 50px;
 }
