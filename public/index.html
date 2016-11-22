@@ -12,12 +12,15 @@
     <header class="header">GRGs</header>
     <section class="first_page">
       <p class="input_description">What are you hungry for?</p>
-      <div><input class="input_field" type="text" name="lname"></div>
-      <button class="search_btn" type="button">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
+      <form class="" action="/recipes/" method="get">
+        <div><input class="input_field" type="text" name="q"></div>
+        <button class="search_btn" type="submit">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
+      </form>
         <ul class="recipe_suggestions">
           {{#each recipes}}
             <li class="recipes">{{this.title}}</li>
-            <a class="links" href={{this.link}} target="_blank">Link to recipe</a>
+            <a class="links" href={{this.link}} target="_blank">Show recipe</a>
+            <a class="links_shopping" target="_blank">Get shopping list</a>
           {{/each}}
         </ul>
     </section>

@@ -43,7 +43,7 @@ html, body {
   font-size: 1.2rem;
   vertical-align: middle;
   border-radius: 2px;
-  /*padding-left: 12px;*/
+  padding-left: 12px;
   margin-bottom: 12px;
 }
 
@@ -71,4 +71,11 @@ html, body {
   list-style-type: none;
   padding-top: 20px;
   font-size: 1.2rem;
+}
+
+.links, .links_shopping {
+  cursor: pointer;
+  margin-right: 20px;
+  text-decoration: none;
+  color: blue;
 }
