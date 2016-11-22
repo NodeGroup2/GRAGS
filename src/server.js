@@ -54,14 +54,40 @@ const routes = [
         for (var i=0; i<3; i++) {
           RecipesList[i] = {
             "title": json.results[i].title,
-            "ingredients": json.results[i].ingredients,
+            "ingredients": json.results[i].ingredients.split(','),
             "link": json.results[i].href
           }
         }
+        console.log(RecipesList);
         reply().redirect('/');
       })
     }
-  }
+  },
+  {
+    method: 'GET',
+    path: '/recipe/', //TODO change recipe to the actual name of the recipe chosen
+    handler: function(request, reply) {
+      let recipe = RecipesList[request.query.n];
+      let url = 'https://dev.tescolabs.com/grocery/products/';
+      console.log(recipe);
+      return;
+
+
+      for(let i=0;i<recipe.ingredients.length;i++){} //close me
+      Request(`${url}?query=${recipe.ingredients[i]}&offset=0&limit=1`, function(err, res, body) {
+        var json = JSON.parse(body);
+        for (var i=0; i<3; i++) {
+          RecipesList[i] = {
+            "title": json.results[i].title,
+            "ingredients": json.results[i].ingredients.split(','),
+            "link": json.results[i].href
+          }
+        }
+        console.log(RecipesList);
+        reply().redirect('/');
+      })
+    }
+   }
 ];
 
 server.route(routes);
