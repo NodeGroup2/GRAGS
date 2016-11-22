@@ -1,0 +1,54 @@
+html, body {
+  font-family: 'Dosis', sans-serif;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.header {
+  position: relative;
+  background-color: #DAA520;
+  text-align: center;
+  width: 100%;
+  padding: 10px 0;
+  z-index: 10;
+  font-size: 2rem;
+}
+
+.content {
+  margin-top: 5rem;
+  text-align: center;
+  width: 100%;
+}
+
+.input_description {
+    font-family: 'Dosis', sans-serif;
+    font-size: 1.2rem;
+}
+
+.input_field {
+  width: 288px;
+  height: 40px;
+  border: 1px black solid;
+  outline: none;
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.2rem;
+  vertical-align: middle;
+  border-radius: 2px;
+  /*padding-left: 12px;*/
+  margin-bottom: 12px;
+}
+
+.search_btn {
+  cursor: pointer;
+  color: white;
+  background-color: black;
+  border: 1px black solid;
+  height: 40px;
+  width: 230px;
+  outline: none;
+  font-size: 1.2rem;
+  font-family: 'Dosis', sans-serif;
+  vertical-align: middle;
+  border-radius: 25px;
+}
