@@ -92,9 +92,9 @@ const routes = [
     method: 'GET',
     path: '/recipe/',
     handler: function(request, reply) {
-      let index = encodeURIComponent(request.query.index);
-      let searchIngredients = RecipesList[index].ingredients;
-      let options = {
+      const index = encodeURIComponent(request.query.index);
+      const searchIngredients = RecipesList[index].ingredients;
+      var options = {
          url: 'https://dev.tescolabs.com/grocery/products/?query=nada&offset=0&limit=1',
          headers: {
           'Ocp-Apim-Subscription-Key': process.env.TESCO_API_KEY
