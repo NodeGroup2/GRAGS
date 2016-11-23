@@ -14,7 +14,7 @@ let RecipesList = [];
 const env = require('env2')('./.env');
 
 server.connection({
-  port: process.env.port || 4000
+  port: process.env.PORT || 4000
 });
 
 server.register([inert, vision], (err) => {
