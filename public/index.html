@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="/normalize.css" media="screen">
     <link rel='stylesheet' href='/styles.css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis">
@@ -29,9 +29,10 @@
         </ul>
     </section>
     <section class="second_page">
-      <h1 class="ingredient_list">Your Tesco shopping list</p>
+      <h1 class="ingredient_list">Your Tesco shopping list</h1>
+      <p>Total Price: £{{ingredients.totalPrice}}</p>
       <!-- Iterate over ingredients array and populate divs for each product -->
-      {{#each ingredients}}
+      {{#each ingredients.arr}}
       <div class="product_information">
         <img src={{this.image}} alt="product-picture"/>
         <p>{{this.name}}</p>

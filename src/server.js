@@ -6,7 +6,10 @@ const inert = require('inert');
 const server = new Hapi.Server();
 const Request = require('request');
 let data;
-let ingredients = [];
+let ingredients = {
+  arr: [],
+  totalPrice: 0
+};
 let RecipesList = [];
 const env = require('env2')('./.env');
 
@@ -108,9 +111,12 @@ const routes = [
           var info = JSON.parse(body);
           addIngredientToArray(info);
           // console.log("updating ingr list ", ingredients.length, "recipe ingredients ", searchIngredients.length);
-          if(ingredients.length === searchIngredients.length)  {
+          if(ingredients.arr.length === searchIngredients.length)  {
             console.log("hello")
             console.log(ingredients);
+            // ingredients.arr.reduce(function(prev,next){
+            //    prev.totalPrice
+            // },{price:0})
             return reply.view('index', data);
           }
         }
@@ -130,7 +136,8 @@ const routes = [
           name: body.name,
           price: body.price
         } // TODO add unit price
-        ingredients.push(info);
+        ingredients.arr.push(info);
+        ingredients.totalPrice += body.price;
       }
     }
   }
