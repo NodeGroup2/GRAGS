@@ -19,13 +19,22 @@
         <ul class="recipe_suggestions">
           {{#each recipes}}
             <li class="recipes">{{this.title}}</li>
+            {{#if this.ingredients}}
             <a class="links" href={{this.link}} target="_blank">Show recipe</a>
             <a class="links_shopping" target="_blank">Get shopping list</a>
+            {{/if}}
           {{/each}}
         </ul>
     </section>
     <section class="second_page">
-      <p class="input_description">What are you hungry for?</p>
+      <h1 class="ingredient_list">Your Tesco shopping list</p>
+      <!-- Iterate over ingredients array and populate divs for each product -->
+      <div class="product_information">
+        <img src="" alt="product-picture"/>
+        <p>Eggs</p>
+        <p>Price: £</p>
+      </div>
+      <!--  -->
     </section>
     <script src="https://use.fontawesome.com/dab6567ebf.js"></script>
     <script type="text/javascript" src='index.js'> </script>
