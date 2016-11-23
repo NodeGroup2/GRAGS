@@ -24,7 +24,7 @@ html, body {
 
 .second_page {
   visibility: hidden;
-  margin-top: -300px;
+  margin-top: -400px;
   text-align: center;
   width: 100%;
 }
@@ -78,4 +78,20 @@ html, body {
   margin-right: 20px;
   text-decoration: none;
   color: blue;
+}
+
+.product_information {
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #999;
+}
+
+.ingredient_list {
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.4rem;
+}
+
+.product_information img {
+  width: 160px;
+  height: 160px;
 }
