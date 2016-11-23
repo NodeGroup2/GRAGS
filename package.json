@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon src/server-start.js",
     "watch": "nodemon -q -x 'npm test'",
-    "test": "node ./tests/tape-tests.js | tap-spec"
+    "test": "node ./tests/tape-tests.js | node_modules/.bin/tap-spec"
   },
   "repository": {
     "type": "git",

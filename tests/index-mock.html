@@ -17,28 +17,12 @@
         <button class="search_btn" type="submit">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
       </form>
         <ul class="recipe_suggestions">
-          {{#each recipes}}
-            <li class="recipes">{{this.title}}</li>
-            {{#if this.ingredients}}
-            <a class="links" href={{this.link}} target="_blank">Show recipe</a>
-            <form class="shopping_list" action='/recipe/' method="get">
-              <button id="btn_ingredients" class="links" type="submit">Get ingredients<input class="links" type="hidden" name="index" value={{@index}}></button>
-            </form>
-            {{/if}}
-          {{/each}}
         </ul>
     </section>
     <section class="second_page">
       <h1 class="ingredient_list">Your Tesco shopping list</h1>
-      <p>Total Price: £{{ingredients.totalPrice}}</p>
+      <p>Total Price: £0</p>
       <!-- Iterate over ingredients array and populate divs for each product -->
-      {{#each ingredients.arr}}
-      <div class="product_information">
-        <img src={{this.image}} alt="product-picture"/>
-        <p>{{this.name}}</p>
-        <p>Price: £{{this.price}}</p>
-      </div>
-      {{/each}}
     </section>
     <script src="https://use.fontawesome.com/dab6567ebf.js"></script>
     <script type="text/javascript" src='/index.js'> </script>

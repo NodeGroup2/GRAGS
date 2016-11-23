@@ -5,7 +5,11 @@ const vision = require('vision');
 const inert = require('inert');
 const server = new Hapi.Server();
 const Request = require('request');
-let ingredients = [];
+let data;
+let ingredients = {
+  arr: [],
+  totalPrice: 0
+};
 let RecipesList = [];
 const env = require('env2')('./.env');
 
@@ -29,7 +33,7 @@ server.views({
 const routes = [
   {
     method:'GET',
-    path:'/{public*}',
+    path:'/{file*}',
     handler: {
       directory: {
         path: 'public/'
@@ -38,10 +42,22 @@ const routes = [
   },
   {
     method: 'GET',
+    path: '/index.html',
+    handler: function(request, reply){
+      data = {
+        recipes: RecipesList || [],
+        ingredients: ingredients || []
+      };
+      return reply.view('index', data);
+    }
+  },
+  {
+    method: 'GET',
     path: '/',
     handler: function(request, reply){
-      var data = {
-        recipes: RecipesList || []
+      data = {
+        recipes: RecipesList || [],
+        ingredients: ingredients || []
       };
       return reply.view('index', data);
     }
@@ -50,6 +66,7 @@ const routes = [
     method: 'GET',
     path: '/recipes/',
     handler: function(request, reply) {
+      let test = true;
       let url = 'http://www.recipepuppy.com/api/';
       let searchRecipe = encodeURIComponent(request.query.q);
       Request(`${url}?q=${searchRecipe}`, function(err, res, body) {
@@ -63,20 +80,24 @@ const routes = [
           for (var i=0; i<3; i++) {
             RecipesList[i] = {
               "title": json.results[i].title,
-              "ingredients": json.results[i].ingredients,
+              "ingredients": json.results[i].ingredients.split(','),
               "link": json.results[i].href
             }
           }
         }
-        reply().redirect('/');
+        return reply.view('index', data);
       })
     }
   },
   {
     method: 'GET',
-    path: '/recipe/', //TODO change recipe to the actual name of the recipe chosen
+    path: '/recipe/',
     handler: function(request, reply) {
-      let recipe = {ingredients: ["chicken", "rice", "tomato"]};
+      console.log("ingr handler running");
+      console.log(request.path);
+      console.log(request.query.index);
+      let index = encodeURIComponent(request.query.index);
+      let searchIngredients = RecipesList[index].ingredients;
       // let url = 'https://dev.tescolabs.com/grocery/products/?query=chicken&offset=0&limit=1';
       let options = {
          url: 'https://dev.tescolabs.com/grocery/products/?query=nada&offset=0&limit=1',
@@ -86,27 +107,37 @@ const routes = [
       };
 
       function callback(error, response, body) {
-        //console.log("I'm in the callback and I'm getting this res:", response);
         if (!error && response.statusCode == 200) {
           var info = JSON.parse(body);
           addIngredientToArray(info);
-          console.log(ingredients);
+          // console.log("updating ingr list ", ingredients.length, "recipe ingredients ", searchIngredients.length);
+          if(ingredients.arr.length === searchIngredients.length)  {
+            console.log("hello")
+            console.log(ingredients);
+            // ingredients.arr.reduce(function(prev,next){
+            //    prev.totalPrice
+            // },{price:0})
+            return reply.view('index', data);
+          }
         }
       }
 
-      for(let i=0;i<recipe.ingredients.length;i++){
-        options.url = "https://dev.tescolabs.com/grocery/products/?query="+recipe.ingredients[i]+"&offset=0&limit=1";
+      for(let i=0;i<searchIngredients.length;i++){
+        console.log(searchIngredients[i]);
+        options.url = "https://dev.tescolabs.com/grocery/products/?query="+searchIngredients[i]+"&offset=0&limit=1";
         Request(options, callback);
       }
 
       function addIngredientToArray(response){
         var body = response.uk.ghs.products.results[0];
+        var largeImage = body.image.replace("90x90","540x540");
         var info = {
-          image: body.image,
+          image: largeImage,
           name: body.name,
           price: body.price
         } // TODO add unit price
-        ingredients.push(info);
+        ingredients.arr.push(info);
+        ingredients.totalPrice += body.price;
       }
     }
   }
