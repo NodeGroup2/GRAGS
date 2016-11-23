@@ -54,21 +54,23 @@ tape('check successful route & handling to index.js', function(t) {
   });
 });
 
-// tape('check successful route & handling to /recipes/?q=omelet', function(t) {
-//   var options = {
-//     method: 'GET',
-//     url: '/recipes/?q=omelet'
-//   };
-//   server.inject(options, (res) => {
-//     t.equal(res.statusCode, 200, 'status code is 200');
-//     var firstRecipeTitle = res.result;
-//     t.equal(firstRecipeTitle, "Baked Omelet With Broccoli &amp; Tomato", 'first recipe title as expected');
-//     t.end();
-//   });
-// });
+tape('check successful response from server on omelet search from client', function(t) {
+  var options = {
+    method: 'GET',
+    url: '/recipes/?q=omelet'
+  };
+  server.inject(options, (res) => {
+    t.equal(res.statusCode, 200, 'status code is 200');
+    var html = res.result.toString();
+    t.ok(html.indexOf("Mild Curry Omelet") > -1, 'recipe title as expected');
+    t.ok(html.indexOf("href=http://allrecipes.com/Recipe/Mild-Curry-Omelet/Detail.aspx") > -1, 'recipe link as expected');
+    t.end();
+  });
+});
 
-tape('check successful response from recipe API for omelet search', function(t) {
+tape('check successful response from recipe API on omelet search from server', function(t) {
   Request('http://www.recipepuppy.com/api/?q=omelet', function(err, res, body) {
+    t.equal(res.statusCode, 200, 'status code is 200');
     var json = JSON.parse(body);
     t.equal(json.results[0].title, "Baked Omelet With Broccoli &amp; Tomato", 'recipe title as expected');
     t.equal(json.results[0].ingredients, "milk, cottage cheese, broccoli, cheddar cheese, basil, onion powder, eggs, garlic powder, roma tomato, salt", 'recipe ingredients as expected');

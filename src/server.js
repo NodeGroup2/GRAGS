@@ -5,6 +5,7 @@ const vision = require('vision');
 const inert = require('inert');
 const server = new Hapi.Server();
 const Request = require('request');
+let data;
 let ingredients = [];
 let RecipesList = [];
 const env = require('env2')('./.env');
@@ -29,7 +30,16 @@ server.views({
 const routes = [
   {
     method:'GET',
-    path:'/{public*}',
+    path:'/{file*}',
+    handler: {
+      directory: {
+        path: 'public/'
+      }
+    }
+  },
+  {
+    method:'GET',
+    path:'/recipes/{file*}',
     handler: {
       directory: {
         path: 'public/'
@@ -40,7 +50,7 @@ const routes = [
     method: 'GET',
     path: '/',
     handler: function(request, reply){
-      var data = {
+      data = {
         recipes: RecipesList || []
       };
       return reply.view('index', data);
@@ -50,6 +60,7 @@ const routes = [
     method: 'GET',
     path: '/recipes/',
     handler: function(request, reply) {
+      let test = true;
       let url = 'http://www.recipepuppy.com/api/';
       let searchRecipe = encodeURIComponent(request.query.q);
       Request(`${url}?q=${searchRecipe}`, function(err, res, body) {
@@ -68,7 +79,7 @@ const routes = [
             }
           }
         }
-        reply().redirect('/');
+        return reply.view('index', data);
       })
     }
   },
