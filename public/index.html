@@ -21,7 +21,9 @@
             <li class="recipes">{{this.title}}</li>
             {{#if this.ingredients}}
             <a class="links" href={{this.link}} target="_blank">Show recipe</a>
-            <a class="links_shopping" target="_blank">Get shopping list</a>
+            <form class="shopping_list" action='/recipe/' method="get">
+              <button id="btn_ingredients" class="links" type="submit">Get ingredients<input class="links" type="hidden" name="index" value={{@index}}></button>
+            </form>
             {{/if}}
           {{/each}}
         </ul>
@@ -29,12 +31,13 @@
     <section class="second_page">
       <h1 class="ingredient_list">Your Tesco shopping list</p>
       <!-- Iterate over ingredients array and populate divs for each product -->
+      {{#each ingredients}}
       <div class="product_information">
-        <img src="" alt="product-picture"/>
-        <p>Eggs</p>
-        <p>Price: £</p>
+        <img src={{this.image}} alt="product-picture"/>
+        <p>{{this.name}}</p>
+        <p>Price: £{{this.price}}</p>
       </div>
-      <!--  -->
+      {{/each}}
     </section>
     <script src="https://use.fontawesome.com/dab6567ebf.js"></script>
     <script type="text/javascript" src='index.js'> </script>
