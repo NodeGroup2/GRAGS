@@ -1,8 +1,11 @@
+"use strict";
+
 const Hapi = require('hapi');
 const vision = require('vision');
 const inert = require('inert');
 const server = new Hapi.Server();
 const Request = require('request');
+let ingredients = [];
 let RecipesList = [];
 const env = require('env2')('./.env');
 
@@ -67,6 +70,44 @@ const routes = [
         }
         reply().redirect('/');
       })
+    }
+  },
+  {
+    method: 'GET',
+    path: '/recipe/', //TODO change recipe to the actual name of the recipe chosen
+    handler: function(request, reply) {
+      let recipe = {ingredients: ["chicken", "rice", "tomato"]};
+      // let url = 'https://dev.tescolabs.com/grocery/products/?query=chicken&offset=0&limit=1';
+      let options = {
+         url: 'https://dev.tescolabs.com/grocery/products/?query=nada&offset=0&limit=1',
+         headers: {
+          'Ocp-Apim-Subscription-Key': process.env.TESCO_API_KEY
+        }
+      };
+
+      function callback(error, response, body) {
+        //console.log("I'm in the callback and I'm getting this res:", response);
+        if (!error && response.statusCode == 200) {
+          var info = JSON.parse(body);
+          addIngredientToArray(info);
+          console.log(ingredients);
+        }
+      }
+
+      for(let i=0;i<recipe.ingredients.length;i++){
+        options.url = "https://dev.tescolabs.com/grocery/products/?query="+recipe.ingredients[i]+"&offset=0&limit=1";
+        Request(options, callback);
+      }
+
+      function addIngredientToArray(response){
+        var body = response.uk.ghs.products.results[0];
+        var info = {
+          image: body.image,
+          name: body.name,
+          price: body.price
+        } // TODO add unit price
+        ingredients.push(info);
+      }
     }
   }
 ];
