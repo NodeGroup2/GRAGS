@@ -5,6 +5,7 @@ const vision = require('vision');
 const inert = require('inert');
 const server = new Hapi.Server();
 const Request = require('request');
+let data;
 let ingredients = [];
 let RecipesList = [];
 const env = require('env2')('./.env');
@@ -29,7 +30,7 @@ server.views({
 const routes = [
   {
     method:'GET',
-    path:'/{public*}',
+    path:'/{file*}',
     handler: {
       directory: {
         path: 'public/'
@@ -38,9 +39,20 @@ const routes = [
   },
   {
     method: 'GET',
+    path: '/index.html',
+    handler: function(request, reply){
+      data = {
+        recipes: RecipesList || [],
+        ingredients: ingredients || []
+      };
+      return reply.view('index', data);
+    }
+  },
+  {
+    method: 'GET',
     path: '/',
     handler: function(request, reply){
-      var data = {
+      data = {
         recipes: RecipesList || [],
         ingredients: ingredients || []
       };
@@ -51,6 +63,7 @@ const routes = [
     method: 'GET',
     path: '/recipes/',
     handler: function(request, reply) {
+      let test = true;
       let url = 'http://www.recipepuppy.com/api/';
       let searchRecipe = encodeURIComponent(request.query.q);
       Request(`${url}?q=${searchRecipe}`, function(err, res, body) {
@@ -69,13 +82,13 @@ const routes = [
             }
           }
         }
-        reply().redirect('/');
+        return reply.view('index', data);
       })
     }
   },
   {
     method: 'GET',
-    path: '/recipe/', //TODO change recipe to the actual name of the recipe chosen
+    path: '/recipe/',
     handler: function(request, reply) {
       console.log("ingr handler running");
       console.log(request.path);
@@ -98,7 +111,7 @@ const routes = [
           if(ingredients.length === searchIngredients.length)  {
             console.log("hello")
             console.log(ingredients);
-            reply().redirect('/');
+            return reply.view('index', data);
           }
         }
       }
@@ -108,8 +121,6 @@ const routes = [
         options.url = "https://dev.tescolabs.com/grocery/products/?query="+searchIngredients[i]+"&offset=0&limit=1";
         Request(options, callback);
       }
-      // console.log(ingredients);
-      // reply().redirect('/');
 
       function addIngredientToArray(response){
         var body = response.uk.ghs.products.results[0];

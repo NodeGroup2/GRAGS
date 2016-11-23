@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
-    <link rel="stylesheet" href="/normalize.css" media="screen">
-    <link rel='stylesheet' href='/styles.css'>
+    <link rel="stylesheet" href="normalize.css" media="screen">
+    <link rel='stylesheet' href='styles.css'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis">
     <title></title>
   </head>
@@ -17,29 +17,19 @@
         <button class="search_btn" type="submit">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
       </form>
         <ul class="recipe_suggestions">
-          {{#each recipes}}
-            <li class="recipes">{{this.title}}</li>
-            {{#if this.ingredients}}
-            <a class="links" href={{this.link}} target="_blank">Show recipe</a>
-            <form class="shopping_list" action='/recipe/' method="get">
-              <button id="btn_ingredients" class="links" type="submit">Get ingredients<input class="links" type="hidden" name="index" value={{@index}}></button>
-            </form>
-            {{/if}}
-          {{/each}}
         </ul>
     </section>
     <section class="second_page">
       <h1 class="ingredient_list">Your Tesco shopping list</p>
       <!-- Iterate over ingredients array and populate divs for each product -->
-      {{#each ingredients}}
       <div class="product_information">
-        <img src={{this.image}} alt="product-picture"/>
-        <p>{{this.name}}</p>
-        <p>Price: £{{this.price}}</p>
+        <img src="" alt="product-picture"/>
+        <p>Eggs</p>
+        <p>Price: £</p>
       </div>
-      {{/each}}
+      <!--  -->
     </section>
     <script src="https://use.fontawesome.com/dab6567ebf.js"></script>
-    <script type="text/javascript" src='/index.js'> </script>
+    <script type="text/javascript" src='index.js'> </script>
   </body>
 </html>
