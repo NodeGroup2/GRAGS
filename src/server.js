@@ -92,12 +92,8 @@ const routes = [
     method: 'GET',
     path: '/recipe/',
     handler: function(request, reply) {
-      console.log("ingr handler running");
-      console.log(request.path);
-      console.log(request.query.index);
       let index = encodeURIComponent(request.query.index);
       let searchIngredients = RecipesList[index].ingredients;
-      // let url = 'https://dev.tescolabs.com/grocery/products/?query=chicken&offset=0&limit=1';
       let options = {
          url: 'https://dev.tescolabs.com/grocery/products/?query=nada&offset=0&limit=1',
          headers: {
@@ -105,26 +101,19 @@ const routes = [
         }
       };
 
-      function callback(error, response, body) {
+      function addIngredientsCallback(error, response, body) {
         if (!error && response.statusCode == 200) {
           var info = JSON.parse(body);
           addIngredientToArray(info);
-          // console.log("updating ingr list ", ingredients.length, "recipe ingredients ", searchIngredients.length);
           if(ingredients.arr.length === searchIngredients.length)  {
-            console.log("hello")
-            console.log(ingredients);
-            // ingredients.arr.reduce(function(prev,next){
-            //    prev.totalPrice
-            // },{price:0})
             return reply.view('index', data);
           }
         }
       }
 
       for(let i=0;i<searchIngredients.length;i++){
-        console.log(searchIngredients[i]);
         options.url = "https://dev.tescolabs.com/grocery/products/?query="+searchIngredients[i]+"&offset=0&limit=1";
-        Request(options, callback);
+        Request(options, addIngredientsCallback);
       }
 
       function addIngredientToArray(response){
@@ -134,7 +123,7 @@ const routes = [
           image: largeImage,
           name: body.name,
           price: body.price
-        } // TODO add unit price
+        }
         ingredients.arr.push(info);
         ingredients.totalPrice += body.price;
       }
