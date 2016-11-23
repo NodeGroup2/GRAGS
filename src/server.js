@@ -124,8 +124,9 @@ const routes = [
 
       function addIngredientToArray(response){
         var body = response.uk.ghs.products.results[0];
+        var largeImage = body.image.replace("90x90","540x540");
         var info = {
-          image: body.image,
+          image: largeImage,
           name: body.name,
           price: body.price
         } // TODO add unit price
