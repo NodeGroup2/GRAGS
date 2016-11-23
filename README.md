@@ -4,7 +4,17 @@
 
 # GRAGS
 
-A Hapi app for searching recipes and requesting Tesco shopping lists. Available online at []().
+A Hapi app for searching recipes and requesting Tesco shopping lists.
+
+## Installation instructions
+
+- Clone this repo and `cd` into it
+- Run `npm install` to install all dependencies
+- Ask us for the Tesco API key
+- Create an `.env` file in the root directory, and add line `export TESCO_API_KEY=the-key-here` to it
+- Run `npm start` to start the server
+- Navigate to `http://localhost:4000/` in your browser
+- To run the tests, run `npm test`
 
 ## General objectives
 
