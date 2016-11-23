@@ -12,19 +12,31 @@
     <header class="header">GRGs</header>
     <section class="first_page">
       <p class="input_description">What are you hungry for?</p>
-      <div><input class="input_field" type="text" name="lname"></div>
-      <button class="search_btn" type="button">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
+      <form class="" action="/recipes/" method="get">
+        <div><input class="input_field" type="text" name="q"></div>
+        <button class="search_btn" type="submit">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
+      </form>
         <ul class="recipe_suggestions">
           {{#each recipes}}
             <li class="recipes">{{this.title}}</li>
-            <a href={{this.link}}>Link to recipe</a>
+            {{#if this.ingredients}}
+            <a class="links" href={{this.link}} target="_blank">Show recipe</a>
+            <a class="links_shopping" target="_blank">Get shopping list</a>
+            {{/if}}
           {{/each}}
         </ul>
     </section>
     <section class="second_page">
-      <p class="input_description">What are you hungry for?</p>
+      <h1 class="ingredient_list">Your Tesco shopping list</p>
+      <!-- Iterate over ingredients array and populate divs for each product -->
+      <div class="product_information">
+        <img src="" alt="product-picture"/>
+        <p>Eggs</p>
+        <p>Price: £</p>
+      </div>
+      <!--  -->
     </section>
     <script src="https://use.fontawesome.com/dab6567ebf.js"></script>
-    <script type="text/javascript" src='./index.js'> </script>
+    <script type="text/javascript" src='index.js'> </script>
   </body>
 </html>

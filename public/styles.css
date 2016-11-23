@@ -24,7 +24,7 @@ html, body {
 
 .second_page {
   visibility: hidden;
-  margin-top: -300px;
+  margin-top: -400px;
   text-align: center;
   width: 100%;
 }
@@ -43,7 +43,7 @@ html, body {
   font-size: 1.2rem;
   vertical-align: middle;
   border-radius: 2px;
-  /*padding-left: 12px;*/
+  padding-left: 12px;
   margin-bottom: 12px;
 }
 
@@ -62,6 +62,36 @@ html, body {
 }
 
 .recipe_suggestions {
-  text-align: left;
+  text-align: center;
   margin-top: 50px;
+  padding-left: 0px;
+}
+
+.recipes {
+  list-style-type: none;
+  padding-top: 20px;
+  font-size: 1.2rem;
+}
+
+.links, .links_shopping {
+  cursor: pointer;
+  margin-right: 20px;
+  text-decoration: none;
+  color: blue;
+}
+
+.product_information {
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.2rem;
+  border-bottom: 1px solid #999;
+}
+
+.ingredient_list {
+  font-family: 'Dosis', sans-serif;
+  font-size: 1.4rem;
+}
+
+.product_information img {
+  width: 160px;
+  height: 160px;
 }

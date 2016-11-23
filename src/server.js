@@ -3,11 +3,10 @@
 const Hapi = require('hapi');
 const vision = require('vision');
 const inert = require('inert');
-// const routes = require('./router.js');
 const server = new Hapi.Server();
 const Request = require('request');
-const RecipesList = [];
-var ingredients = [];
+let ingredients = [];
+let RecipesList = [];
 const env = require('env2')('./.env');
 
 server.connection({
@@ -16,7 +15,7 @@ server.connection({
 });
 
 server.register([inert, vision], (err) => {
-  if (err) console.log(err);
+  if (err) throw err;
 });
 
 server.views({
@@ -52,17 +51,23 @@ const routes = [
     path: '/recipes/',
     handler: function(request, reply) {
       let url = 'http://www.recipepuppy.com/api/';
-      let searchRecipe = request.query.q;
+      let searchRecipe = encodeURIComponent(request.query.q);
       Request(`${url}?q=${searchRecipe}`, function(err, res, body) {
         var json = JSON.parse(body);
-        for (var i=0; i<3; i++) {
-          RecipesList[i] = {
-            "title": json.results[i].title,
-            "ingredients": json.results[i].ingredients.split(','),
-            "link": json.results[i].href
+        if (json.results.length === 0) {
+          RecipesList = [{
+            "title": "Sorry, no recipe matches found. Fancy searching for a different recipe?"
+          }]
+        }
+        else {
+          for (var i=0; i<3; i++) {
+            RecipesList[i] = {
+              "title": json.results[i].title,
+              "ingredients": json.results[i].ingredients,
+              "link": json.results[i].href
+            }
           }
         }
-        console.log(RecipesList);
         reply().redirect('/');
       })
     }
@@ -104,20 +109,7 @@ const routes = [
         ingredients.push(info);
       }
     }
-
-      // Request(`${url}?query=${recipe.ingredients[i]}&offset=0&limit=1`, function(err, res, body) {
-      //   var json = JSON.parse(body);
-      //   for (var i=0; i<3; i++) {
-      //     RecipesList[i] = {
-      //       "title": json.results[i].title,
-      //       "ingredients": json.results[i].ingredients.split(','),
-      //       "link": json.results[i].href
-      //     }
-      //   }
-      //   console.log(RecipesList);
-      //   reply().redirect('/');
-      // })
-    }
+  }
 ];
 
 server.route(routes);
