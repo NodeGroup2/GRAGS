@@ -102,7 +102,7 @@ const routes = [
         }
       };
 
-      function callback(error, response, body) {
+      function addIngredientsCallback(error, response, body) {
         if (!error && response.statusCode == 200) {
           var info = JSON.parse(body);
           addIngredientToArray(info);
@@ -114,7 +114,7 @@ const routes = [
 
       for(let i=0;i<searchIngredients.length;i++){
         options.url = "https://dev.tescolabs.com/grocery/products/?query="+searchIngredients[i]+"&offset=0&limit=1";
-        Request(options, callback);
+        Request(options, addIngredientsCallback);
       }
 
       function addIngredientToArray(response){
