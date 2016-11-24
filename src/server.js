@@ -125,7 +125,7 @@ const routes = [
           price: body.price
         }
         ingredients.arr.push(info);
-        ingredients.totalPrice += body.price;
+        ingredients.totalPrice += parseFloat(body.price.toFixed(2));
       }
     }
   }
