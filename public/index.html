@@ -20,9 +20,9 @@
           {{#each recipes}}
             <li class="recipes">{{this.title}}</li>
             {{#if this.ingredients}}
-            <a class="links" href={{this.link}} target="_blank">Show recipe</a>
+            <a class="recipe_link" href={{this.link}} target="_blank">Show recipe</a>
             <form class="shopping_list" action='/recipe/' method="get">
-              <button id="btn_ingredients" class="links" type="submit">Get ingredients<input class="links" type="hidden" name="index" value={{@index}}></button>
+              <button class="ingredient_link" type="submit">Get ingredients<input type="hidden" name="index" value={{@index}}></button>
             </form>
             {{/if}}
           {{/each}}
