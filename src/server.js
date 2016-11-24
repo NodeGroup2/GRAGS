@@ -132,7 +132,6 @@ const routes = [
         ingredients.arr.push(info);
         ingredients.totalPrice += body.price;
         ingredients.totalPrice = parseFloat(ingredients.totalPrice.toFixed(2));
-        console.log("the total fin price is: ", ingredients.totalPrice);
       }
     }
   }
