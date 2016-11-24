@@ -1,17 +1,20 @@
 "use strict";
 
 const Hapi = require('hapi');
-const vision = require('vision');
 const inert = require('inert');
-const server = new Hapi.Server();
+const vision = require('vision');
+const handlebars = require('handlebars');
 const Request = require('request');
+const env = require('env2')('./.env');
+
+const server = new Hapi.Server();
+
 let data;
 let ingredients = {
   arr: [],
   totalPrice: 0
 };
 let RecipesList = [];
-const env = require('env2')('./.env');
 
 server.connection({
   port: process.env.PORT || 4000
@@ -23,7 +26,7 @@ server.register([inert, vision], (err) => {
 
 server.views({
   engines: {
-    html: require('handlebars')
+    html: handlebars
   },
   relativeTo: __dirname,
   path: '../public'
