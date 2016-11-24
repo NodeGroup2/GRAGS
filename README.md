@@ -1,4 +1,4 @@
-# GRAGS
+# GRAGS (Get Recipes And GrocerieS)
 
 A Hapi app for searching recipes and requesting Tesco shopping lists.  
 Available online at https://grags.herokuapp.com/.
