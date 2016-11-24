@@ -83,7 +83,7 @@ html, body {
 .product_information {
   font-family: 'Dosis', sans-serif;
   font-size: 1rem;
-  border-bottom: 1px solid #999;
+  margin-bottom: 0.5rem;
 }
 
 .ingredient_list {
@@ -107,4 +107,9 @@ html, body {
   font: inherit;
   cursor: pointer;
   color: blue;
+}
+
+.total_price {
+  font-size: 1.4rem;
+  color: #AA1207;
 }
