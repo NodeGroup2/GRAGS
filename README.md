@@ -69,9 +69,18 @@ so that... **I know what I need to get from Tesco and how much it will cost.**
 - add API keys as environment variables using ENV2
 - add templates for server rendering of webpages
 - add front-end interactivity
-- ...
+- setup requests and handler to Recipe Puppy API
+- back-end testing for first API
 
 ### Wednesday
+- setup requests and handler for Tesco API
+- add more back-end tests
+- connect front-end ingredients section to back-end
+- refactor code
+- deploy on heroku
+
+### Thursday
+- respond to issues
 
 ## Front-end design
 
