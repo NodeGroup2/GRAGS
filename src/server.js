@@ -50,7 +50,7 @@ const routes = [
         recipes: RecipesList || [],
         ingredients: ingredients || []
       };
-      return reply.view('index', data);
+      reply.view('index', data);
     }
   },
   {
@@ -61,7 +61,7 @@ const routes = [
         recipes: RecipesList || [],
         ingredients: ingredients || []
       };
-      return reply.view('index', data);
+      reply.view('index', data);
     }
   },
   {
@@ -87,7 +87,9 @@ const routes = [
             }
           }
         }
-        return reply.view('index', data);
+        ingredients.arr = [];
+        ingredients.totalPrice = 0;
+        reply.view('index', data);
       })
     }
   },
@@ -109,7 +111,7 @@ const routes = [
           var info = JSON.parse(body);
           addIngredientToArray(info);
           if(ingredients.arr.length === searchIngredients.length)  {
-            return reply.view('index', data);
+            reply.view('index', data);
           }
         }
       }
@@ -129,6 +131,8 @@ const routes = [
         }
         ingredients.arr.push(info);
         ingredients.totalPrice += body.price;
+        ingredients.totalPrice = parseFloat(ingredients.totalPrice.toFixed(2));
+        console.log("the total fin price is: ", ingredients.totalPrice);
       }
     }
   }
