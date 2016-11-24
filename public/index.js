@@ -8,3 +8,10 @@ for(i = 0; i < links.length; i++){
     document.getElementsByClassName("second_page")[0].style.visibility = "visible";
   });
 }
+
+function validateForm() {
+    var searchRecipeInput = document.forms["search_recipe_form"]["q"].value;
+    if (searchRecipeInput == "") {
+        return false;
+    }
+}

@@ -12,7 +12,7 @@
     <header class="header">GRAGs</header>
     <section class="first_page">
       <p class="input_description">What are you hungry for?</p>
-      <form class="" action="/recipes/" method="get">
+      <form class="" name="search_recipe_form" action="/recipes/" method="get" onsubmit="return validateForm()">
         <div><input class="input_field" type="text" name="q" placeholder="e.g. risotto"></div>
         <button class="search_btn" type="submit">Find recipes  <i class="fa fa-cutlery" aria-hidden="true"></i></button>
       </form>
