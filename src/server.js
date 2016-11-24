@@ -87,6 +87,7 @@ const routes = [
             }
           }
         }
+        ingredients.arr = [];
         return reply.view('index', data);
       })
     }
@@ -115,9 +116,6 @@ const routes = [
       }
 
       for(let i=0;i<searchIngredients.length;i++){
-        if(i===0){
-          console.log("the ingredients array: ",ingredients.arr);
-        }
         options.url = "https://dev.tescolabs.com/grocery/products/?query="+searchIngredients[i]+"&offset=0&limit=1";
         Request(options, addIngredientsCallback);
       }
